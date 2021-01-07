@@ -65,8 +65,6 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\Login.cshtml.g.cs
-D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\Register.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\CodexEvents.RazorTargetAssemblyInfo.cache
@@ -79,3 +77,7 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\CodexEvents.genruntimeconfi
 D:\NET_Workspace\CodexEvents\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\NET_Workspace\CodexEvents\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\CodexEvents.csprojAssemblyReference.cache
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\Login.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\Register.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\RegisteredSuccessfully.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\RegistrationUnsuccessful.cshtml.g.cs

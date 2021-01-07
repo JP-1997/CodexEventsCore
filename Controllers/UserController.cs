@@ -8,24 +8,9 @@ namespace CodexEvents.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Login()
+        public IActionResult Dashboard()
         {
             return View();
-        }
-
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        public IActionResult ShowLogin()
-        {
-            return RedirectToAction("Login");
-        }
-
-        public IActionResult ShowReg()
-        {
-            return RedirectToAction("Register");
         }
     }
 }

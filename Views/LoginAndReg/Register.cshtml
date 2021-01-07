@@ -1,4 +1,4 @@
-﻿
+﻿@model CodexEvents.Models.User
 @{
 	Layout = null;
 }
@@ -187,7 +187,7 @@ $(document).ready(function() {
 	<h2 class="text-center">User Registration:-</h2><br />
 
 	<div class="neomorphism">
-		<form class="form-horizontal" action="registerUser" method="post" id="register_form">
+		<form class="form-horizontal" asp-controller="LoginAndReg" asp-action="Register" method="post" id="register_form">
 
 			<div class="form-group">
 				<label class="col-md-4 control-label">First Name</label>
