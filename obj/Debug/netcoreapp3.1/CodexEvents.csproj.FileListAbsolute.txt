@@ -47,3 +47,5 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\CodexEvents.csproj.CopyComp
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\CodexEvents.dll
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\CodexEvents.pdb
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\CodexEvents.genruntimeconfig.cache
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\Login.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\Register.cshtml.g.cs
