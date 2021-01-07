@@ -1,6 +1,7 @@
 ﻿using CodexEvents.DataAccessLayer.UserRepository;
 using CodexEvents.Models;
 using CodexEvents.Services.LoginService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace CodexEvents.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel loginViewModel)
         {
             try
@@ -45,7 +47,11 @@ namespace CodexEvents.Controllers
                         else
                         {
                             var Role = result.Role;
-                            if(Role == "USER")
+                            remove_Anonymous_Cookies();
+                            HttpContext.Session.SetString("UserID", Convert.ToString(result.Id));
+                            HttpContext.Session.SetString("RoleID", Convert.ToString(result.Role));
+                            HttpContext.Session.SetString("Username", Convert.ToString(result.Email));
+                            if (Role == "USER")
                             {
                                 return RedirectToAction("Dashboard", "User");
                             }
@@ -98,6 +104,15 @@ namespace CodexEvents.Controllers
             return RedirectToAction("Register");
         }
 
-    
+        [NonAction]
+        public void remove_Anonymous_Cookies()
+        {
+            if (Request.Cookies["EventChannel"] != null)
+            {
+                CookieOptions option = new CookieOptions();
+                option.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Append("EventChannel", "", option);
+            }
+        }
     }
 }

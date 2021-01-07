@@ -81,3 +81,7 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\Log
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\Register.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\RegisteredSuccessfully.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\RegistrationUnsuccessful.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\Dashboard.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowProfile.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\ShowProfile.cshtml.g.cs

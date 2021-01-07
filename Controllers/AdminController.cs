@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace CodexEvents.Controllers
 {
-    public class UserController : Controller
+    public class AdminController : Controller
     {
-
         IUserRepository _IUserRepository;
 
-        public UserController(IUserRepository IUserRepository)
+        public AdminController(IUserRepository IUserRepository)
         {
             _IUserRepository = IUserRepository;
         }
+
         public IActionResult Dashboard()
         {
             return View();

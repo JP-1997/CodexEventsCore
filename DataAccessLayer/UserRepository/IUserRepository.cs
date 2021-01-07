@@ -9,5 +9,6 @@ namespace CodexEvents.DataAccessLayer.UserRepository
     public interface IUserRepository
     {
         int AddUser(User user);
+        User getUserInfo(int userId);
     }
 }

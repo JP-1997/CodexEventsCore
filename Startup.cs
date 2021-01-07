@@ -27,6 +27,8 @@ namespace CodexEvents
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddDbContext<CodexEventsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDBConnection")));
             services.AddTransient<IUserRepository, UserRepositoryImpl>();
@@ -52,6 +54,8 @@ namespace CodexEvents
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

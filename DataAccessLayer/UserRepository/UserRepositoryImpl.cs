@@ -20,5 +20,12 @@ namespace CodexEvents.DataAccessLayer.UserRepository
             _context.Users.Add(user);
             return _context.SaveChanges();
         }
+
+        public User getUserInfo(int userId)
+        {
+            var result = (from u in _context.Users where u.Id == userId select u).SingleOrDefault();
+            result.Password = "";
+            return result;
+        }
     }
 }
