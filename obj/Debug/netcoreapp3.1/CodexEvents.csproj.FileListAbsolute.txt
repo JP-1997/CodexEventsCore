@@ -85,3 +85,5 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\Dashboard.
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowProfile.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\ShowProfile.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\EditProfile.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditProfile.cshtml.g.cs

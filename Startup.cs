@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CodexEvents.DataAccessLayer.UserRepository;
 using CodexEvents.Services.LoginService;
+using CodexEvents.Services.ProfileService;
 
 namespace CodexEvents
 {
@@ -33,6 +34,7 @@ namespace CodexEvents
             services.AddDbContext<CodexEventsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDBConnection")));
             services.AddTransient<IUserRepository, UserRepositoryImpl>();
             services.AddTransient<ILoginService, LoginServiceImpl>();
+            services.AddTransient<IProfileService, ProfileServiceImpl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
