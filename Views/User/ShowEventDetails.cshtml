@@ -4,6 +4,7 @@
 }
 @{
     Event e = ViewBag.Event;
+    int isUserRegistered = ViewBag.UserAlreadyRegistered;
 }
 <!DOCTYPE html>
 <html>
@@ -137,12 +138,15 @@
             </tr>
         </table>
     </div>
-
+    @if (isUserRegistered != 1)
+    {
     @if (e.AvailableSeats != 0)
     {
     <div class="showRegistrationsFooter">
         <a href="RaiseRequest?eventId=@e.Id">Raise Request</a>
     </div>
+    }
+
     }
 
 

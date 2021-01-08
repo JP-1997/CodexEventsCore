@@ -88,9 +88,12 @@ namespace CodexEvents.Controllers
 
         public IActionResult ShowEventDetails()
         {
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
             int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
             var eventInfo = _IEventService.FetchEventById(eventId);
             ViewBag.Event = eventInfo;
+            int result = _IEventRegistrationService.isUserRegisteredInEvent(userId, eventId);
+            ViewBag.UserAlreadyRegistered = result;
             return View();
         }
 

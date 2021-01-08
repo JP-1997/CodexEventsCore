@@ -28,5 +28,11 @@ namespace CodexEvents.DataAccessLayer.EventRegistrationRepository
             var records = await _context.EventRegistrations.Where(er => er.UserId == userId).Select(er => er).ToListAsync();
             return records;
         }
+
+        public EventRegistration findEventRegistrationByUserIdAndEventId(int userId, int eventId)
+        {
+            EventRegistration er = _context.EventRegistrations.Where(er => er.UserId == userId && er.EventId == eventId).Select(er => er).FirstOrDefault();
+            return er;
+        }
     }
 }

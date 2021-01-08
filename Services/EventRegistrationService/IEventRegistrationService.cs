@@ -10,5 +10,7 @@ namespace CodexEvents.Services.EventRegistrationService
     {
         int RaiseRequest(int userId, int eventId);
         List<Event> fetchEventsByUserId(int userId);
+
+        int isUserRegisteredInEvent(int userId, int eventId);
     }
 }

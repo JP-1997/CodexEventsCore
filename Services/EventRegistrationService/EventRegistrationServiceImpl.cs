@@ -33,6 +33,19 @@ namespace CodexEvents.Services.EventRegistrationService
             return events;
         }
 
+        public int isUserRegisteredInEvent(int userId, int eventId)
+        {
+            EventRegistration er = _IEventRegistrationRepository.findEventRegistrationByUserIdAndEventId(userId, eventId);
+            if(er != null)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public int RaiseRequest(int userId, int eventId)
         {
             EventRegistration er = new EventRegistration();
