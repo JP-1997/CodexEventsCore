@@ -1,5 +1,6 @@
 ﻿using CodexEvents.DataAccessLayer.UserRepository;
 using CodexEvents.Models;
+using CodexEvents.Services.EventRegistrationService;
 using CodexEvents.Services.EventService;
 using CodexEvents.Services.ProfileService;
 using Microsoft.AspNetCore.Http;
@@ -17,12 +18,14 @@ namespace CodexEvents.Controllers
         IUserRepository _IUserRepository;
         IProfileService _IProfileService;
         IEventService _IEventService;
+        IEventRegistrationService _IEventRegistrationService;
 
-        public UserController(IUserRepository IUserRepository, IProfileService IProfileService, IEventService IEventService)
+        public UserController(IUserRepository IUserRepository, IProfileService IProfileService, IEventService IEventService, IEventRegistrationService IEventRegistrationService)
         {
             _IUserRepository = IUserRepository;
             _IProfileService = IProfileService;
             _IEventService = IEventService;
+            _IEventRegistrationService = IEventRegistrationService;
         }
         public IActionResult Dashboard()
         {
@@ -87,6 +90,31 @@ namespace CodexEvents.Controllers
             int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
             var eventInfo = _IEventService.FetchEventById(eventId);
             ViewBag.Event = eventInfo;
+            return View();
+        }
+
+        public IActionResult RaiseRequest()
+        {
+            int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            int result = _IEventRegistrationService.RaiseRequest(userId, eventId);
+            if(result > 0)
+            {
+                return RedirectToAction("RequestRaisedSuccessfully", "User");
+            }
+            else
+            {
+                return RedirectToAction("RequestRaiseUnsuccessful", "User");
+            }
+        }
+
+        public IActionResult RequestRaisedSuccessfully()
+        {
+            return View();
+        }
+
+        public IActionResult RequestRaiseUnsuccessful()
+        {
             return View();
         }
 

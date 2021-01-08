@@ -40,5 +40,11 @@ namespace CodexEvents.DataAccessLayer.EventRepository
             var records = await _context.Events.Where(e => e.Time >= DateTime.Now).ToListAsync();
             return records;
         }
+
+        public int updateEvent(Event e)
+        {
+            _context.Entry(e).State = EntityState.Modified;
+            return _context.SaveChanges();
+        }
     }
 }

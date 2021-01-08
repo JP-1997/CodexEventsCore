@@ -15,5 +15,7 @@ namespace CodexEvents.DataAccessLayer.EventRepository
         Event GetEvent(int eventId);
 
         Task<List<Event>> getUpcomingEvents();
+
+        int updateEvent(Event e);
     }
 }
