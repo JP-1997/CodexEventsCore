@@ -34,5 +34,11 @@ namespace CodexEvents.DataAccessLayer.EventRepository
             var result = (from e in _context.Events where e.Id == eventId select e).SingleOrDefault();
             return result;
         }
+
+        public async Task<List<Event>> getUpcomingEvents()
+        {
+            var records = await _context.Events.Where(e => e.Time >= DateTime.Now).ToListAsync();
+            return records;
+        }
     }
 }

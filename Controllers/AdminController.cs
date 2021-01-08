@@ -111,7 +111,6 @@ namespace CodexEvents.Controllers
         public IActionResult ShowEvent()
         {
             int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
-            var e = _IEventService.FetchEventById(eventId);
             var eventInfo = _IEventService.FetchEventById(eventId);
             ViewBag.Event = eventInfo;
             return View();

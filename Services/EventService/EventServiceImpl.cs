@@ -58,6 +58,14 @@ namespace CodexEvents.Services.EventService
             return fetchedEvents;
         }
 
+        public List<Event> fetchUpcomingEvents()
+        {
+            var upcomingEventsRecords = _IEventRepository.getUpcomingEvents();
+            upcomingEventsRecords.Wait();
+            List<Event> upcomingEvents = upcomingEventsRecords.Result;
+            return upcomingEvents;
+        }
+
         public int UpdateEvent(Event e)
         {
             var oldEvent = _context.Events.Find(e.Id);

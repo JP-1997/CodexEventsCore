@@ -1,5 +1,6 @@
 ﻿using CodexEvents.DataAccessLayer.UserRepository;
 using CodexEvents.Models;
+using CodexEvents.Services.EventService;
 using CodexEvents.Services.ProfileService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +16,18 @@ namespace CodexEvents.Controllers
 
         IUserRepository _IUserRepository;
         IProfileService _IProfileService;
+        IEventService _IEventService;
 
-        public UserController(IUserRepository IUserRepository, IProfileService IProfileService)
+        public UserController(IUserRepository IUserRepository, IProfileService IProfileService, IEventService IEventService)
         {
             _IUserRepository = IUserRepository;
             _IProfileService = IProfileService;
+            _IEventService = IEventService;
         }
         public IActionResult Dashboard()
         {
-            return View();
+            List<Event> upcomingEvents = _IEventService.fetchUpcomingEvents();
+            return View(upcomingEvents);
         }
 
         public IActionResult ShowProfile()
@@ -77,5 +81,14 @@ namespace CodexEvents.Controllers
         {
             return RedirectToAction("Logout", "LoginAndReg");
         }
+
+        public IActionResult ShowEventDetails()
+        {
+            int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
+            var eventInfo = _IEventService.FetchEventById(eventId);
+            ViewBag.Event = eventInfo;
+            return View();
+        }
+
     }
 }

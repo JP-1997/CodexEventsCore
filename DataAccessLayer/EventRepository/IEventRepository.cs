@@ -9,8 +9,11 @@ namespace CodexEvents.DataAccessLayer.EventRepository
     public interface IEventRepository
     {
         Task<List<Event>> fetchEventsByAdminId(int AdminId);
+
         int AddEvent(Event e);
 
         Event GetEvent(int eventId);
+
+        Task<List<Event>> getUpcomingEvents();
     }
 }

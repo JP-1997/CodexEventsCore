@@ -17,5 +17,7 @@ namespace CodexEvents.Services.EventService
         int UpdateEvent(Event e);
 
         bool DeleteEvent(int eventId);
+
+        List<Event> fetchUpcomingEvents();
     }
 }

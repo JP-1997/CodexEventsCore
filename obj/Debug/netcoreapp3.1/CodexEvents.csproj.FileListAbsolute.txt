@@ -97,3 +97,4 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditMyEve
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowEvent.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\DeleteMyEvent.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowDeleteEvent.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\ShowEventDetails.cshtml.g.cs
