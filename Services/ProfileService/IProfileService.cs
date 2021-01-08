@@ -9,5 +9,6 @@ namespace CodexEvents.Services.ProfileService
     public interface IProfileService
     {
         bool UpdateUser(User user);
+        bool DeleteUser(int UserId);
     }
 }

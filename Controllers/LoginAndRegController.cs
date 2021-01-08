@@ -114,5 +114,26 @@ namespace CodexEvents.Controllers
                 Response.Cookies.Append("EventChannel", "", option);
             }
         }
+
+        public IActionResult Logout()
+        {
+            try
+            {
+                CookieOptions option = new CookieOptions();
+
+                if (Request.Cookies["EventChannel"] != null)
+                {
+                    option.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Append("EventChannel", "", option);
+                }
+
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "LoginAndReg");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

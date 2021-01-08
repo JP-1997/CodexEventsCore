@@ -55,5 +55,26 @@ namespace CodexEvents.Controllers
             _IProfileService.UpdateUser(user);
             return RedirectToAction("ShowProfile");
         }
+        public IActionResult ShowDeleteProfile()
+        {
+            return View();
+        }
+
+        public IActionResult DeleteProfile()
+        {
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            _IProfileService.DeleteUser(userId);
+            return View();
+        }
+
+        public IActionResult ShowHome()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult PerformLogout()
+        {
+            return RedirectToAction("Logout", "LoginAndReg");
+        }
     }
 }

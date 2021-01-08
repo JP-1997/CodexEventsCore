@@ -18,6 +18,21 @@ namespace CodexEvents.Services.ProfileService
             _context = context;
         }
 
+        public bool DeleteUser(int UserId)
+        {
+            var user = _context.Users.Find(UserId);
+            _context.Users.Remove(user);
+            int result = _context.SaveChanges();
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool UpdateUser(User user)
         {
             var oldUser = _context.Users.Find(user.Id);
