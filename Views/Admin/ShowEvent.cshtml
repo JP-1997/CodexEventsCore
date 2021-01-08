@@ -1,0 +1,122 @@
+﻿@model CodexEvents.Models.Event
+@{
+    Layout = null;
+}
+@{
+    Event e = ViewBag.Event;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="ISO-8859-1">
+    <style>
+        .navbar {
+            margin-bottom: 0;
+            background-color: #f4511e;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Montserrat, sans-serif;
+        }
+
+            .navbar li a, .navbar .navbar-brand {
+                color: #fff !important;
+            }
+
+        .profileheading {
+            padding: 60px 10px 10px 20px;
+            text-align: center;
+        }
+
+        .userdetail {
+            width: 30%;
+        }
+
+        .user-details-table {
+            width: 85%;
+            margin: 0 auto;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 10px 10px 21px #8a8a8a, -10px -10px 21px #ffffff;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .profile-buttons {
+            display: flex;
+            height: 30px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: stretch;
+        }
+
+            .profile-buttons a, button {
+                align-self: auto;
+                width: 200px;
+                padding: 20px;
+            }
+    </style>
+    <title>Event Details</title>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="ShowDashboard">CodeX Events</a>
+        </div>
+    </nav>
+    <h2 class="profileheading">Event Details</h2><br />
+
+    <div class="user-details-table">
+        <table class="table">
+            <tr>
+                <td class="userdetail">Event Id</td>
+                <td>@e.Id</td>
+            </tr>
+            <tr>
+                <td class="userdetail">Name</td>
+                <td>@e.Name</td>
+            </tr>
+            <tr>
+                <td class="userdetail">Description</td>
+                <td>@e.Description</td>
+            </tr>
+            <tr>
+                <td class="userdetail">Time</td>
+                <td>@e.Time</td>
+            </tr>
+            <tr>
+                <td class="userdetail">Location</td>
+                <td>@e.Location</td>
+            </tr>
+            <tr>
+                <td class="userdetail">Total Seats</td>
+                <td>@e.TotalSeats</td>
+            </tr>
+            <tr>
+                <td class="userdetail">Available Seats</td>
+                <td>@e.AvailableSeats</td>
+            </tr>
+            <tr>
+                <td class="userdetail">Pending Requests</td>
+                <td>@e.PendingRequests</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="profile-buttons">
+        <a href="ShowEditEvent?eventId=@e.Id"><button type="button" class="btn btn-primary">Edit</button></a>
+        <a href="ShowDeleteEvent?eventId=@e.Id"><button type="button" class="btn btn-warning">Delete Event</button></a>
+    </div>
+
+
+</body>
+</html>

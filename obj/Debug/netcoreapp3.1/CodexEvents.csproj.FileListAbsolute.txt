@@ -91,3 +91,9 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\DeletePro
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowDeleteProfile.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\DeleteProfile.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\ShowDeleteProfile.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddEventSuccessful.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CreateEvent.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditMyEvent.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowEvent.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\DeleteMyEvent.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowDeleteEvent.cshtml.g.cs

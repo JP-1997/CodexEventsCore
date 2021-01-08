@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<CodexEvents.Models.Event>
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -86,6 +87,49 @@
             -webkit-animation-duration: 1s;
             visibility: visible;
         }
+        .noEvents {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .myEventsTable {
+            width: 85%;
+            margin: 0 auto;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 10px 10px 21px #8a8a8a, -10px -10px 21px #ffffff;
+            font-family: Montserrat, sans-serif;
+            padding-top: 100px;
+        }
+        .createEventFooter {
+            background-color: #f4511e;
+            letter-spacing: 4px;
+            border-radius: 0;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 16px;
+            width: 100%;
+            align-self: stretch;
+        }
+
+        .createEventFooter a {
+            color: #fff !important;
+            float: center;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            border: 1px solid #f4511e;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            align-self: stretch;
+        }
+
+        .createEventFooter a:hover {
+            color: #f4511e !important;
+            background-color: #fff !important;
+        }
     </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -112,5 +156,42 @@
         <h1>CodeX Events</h1>
         <p>Event Registration Portal</p>
     </div>
+
+    <div class="myEventsTable">
+
+        @if (Model.Count<Event>() != 0)
+        {
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Available Seats</th>
+                    <th>Pending Requests</th>
+                </tr>
+                @foreach (var e in Model)
+                {
+                    <tr>
+                        <td>@e.Id</td>
+                        <td>@e.Name</td>
+                        <td>@e.Time</td>
+                        <td>@e.AvailableSeats</td>
+                        <td>@e.PendingRequests</td>
+                        <td><a href="ShowEvent?eventId=@e.Id">View Details</a></td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <p class="noEvents">No Events listed.</p><br /><br />
+        }
+    </div>
+
+    <div class="createEventFooter">
+        <a href="CreateEvent">Create a new event</a>
+    </div>
+
 </body>
 </html>

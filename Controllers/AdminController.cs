@@ -1,5 +1,6 @@
 ﻿using CodexEvents.DataAccessLayer.UserRepository;
 using CodexEvents.Models;
+using CodexEvents.Services.EventService;
 using CodexEvents.Services.ProfileService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,16 +15,20 @@ namespace CodexEvents.Controllers
     {
         IUserRepository _IUserRepository;
         IProfileService _IProfileService;
+        IEventService _IEventService;
 
-        public AdminController(IUserRepository IUserRepository, IProfileService IProfileService)
+        public AdminController(IUserRepository IUserRepository, IProfileService IProfileService, IEventService IEventService)
         {
             _IUserRepository = IUserRepository;
             _IProfileService = IProfileService;
+            _IEventService = IEventService;
         }
 
         public IActionResult Dashboard()
         {
-            return View();
+            int adminId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            List<Event> events = _IEventService.fetchMyEvents(adminId);
+            return View(events);
         }
 
         public IActionResult ShowProfile()
@@ -75,6 +80,75 @@ namespace CodexEvents.Controllers
         public IActionResult PerformLogout()
         {
             return RedirectToAction("Logout", "LoginAndReg");
+        }
+
+        public IActionResult CreateEvent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateEvent(Event e)
+        {
+            int adminId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            //e.EventAdminId = adminId;
+            int result = _IEventService.addEvent(e, adminId);
+            if(result > 0)
+            {
+                return RedirectToAction("AddEventSuccessful", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+        }
+
+        public IActionResult AddEventSuccessful()
+        {
+            return View();
+        }
+
+        public IActionResult ShowEvent()
+        {
+            int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
+            var e = _IEventService.FetchEventById(eventId);
+            var eventInfo = _IEventService.FetchEventById(eventId);
+            ViewBag.Event = eventInfo;
+            return View();
+        }
+
+        public IActionResult ShowEditEvent()
+        {
+            int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
+            return RedirectToAction("EditMyEvent", new { eventId = eventId });
+        }
+
+        public IActionResult EditMyEvent()
+        {
+            int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
+            var eventInfo = _IEventService.FetchEventById(eventId);
+            ViewBag.Event = eventInfo;
+            return View();
+        }
+
+        public IActionResult UpdateEvent(Event e)
+        {
+            int eventId = _IEventService.UpdateEvent(e);
+            return RedirectToAction("ShowEvent", new { eventId = eventId });
+        }
+
+        public IActionResult ShowDeleteEvent()
+        {
+            int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
+            var eventInfo = _IEventService.FetchEventById(eventId);
+            ViewBag.Event = eventInfo;
+            return View();
+        }
+
+        public IActionResult DeleteMyEvent(Event e)
+        {
+            _IEventService.DeleteEvent(e.Id);
+            return View();
         }
     }
 }

@@ -4,14 +4,16 @@ using CodexEvents.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodexEvents.Migrations
 {
     [DbContext(typeof(CodexEventsDbContext))]
-    partial class CodexEventsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210108064645_CreatedEventsTable")]
+    partial class CreatedEventsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +43,6 @@ namespace CodexEvents.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PendingRequests")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
@@ -53,27 +52,6 @@ namespace CodexEvents.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("CodexEvents.Models.EventRegistration", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EventRegistrations");
                 });
 
             modelBuilder.Entity("CodexEvents.Models.User", b =>
