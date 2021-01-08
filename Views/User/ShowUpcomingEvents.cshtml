@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Dashboard</title>
+    <title>Upcoming Events</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -87,6 +87,7 @@
             -webkit-animation-duration: 1s;
             visibility: visible;
         }
+
         .noEvents {
             text-align: center;
             font-weight: bold;
@@ -114,24 +115,24 @@
             align-self: stretch;
         }
 
-        .showRegistrationsFooter a {
-            color: #fff !important;
-            float: center;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            border: 1px solid #f4511e;
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            align-self: stretch;
-        }
+            .showRegistrationsFooter a {
+                color: #fff !important;
+                float: center;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+                border: 1px solid #f4511e;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                align-self: stretch;
+            }
 
-        .showRegistrationsFooter a:hover {
-            color: #f4511e !important;
-            background-color: #fff !important;
-        }
+                .showRegistrationsFooter a:hover {
+                    color: #f4511e !important;
+                    background-color: #fff !important;
+                }
     </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -143,7 +144,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#myPage">CodeX Events</a>
+                <a class="navbar-brand" href="ShowDashboard">CodeX Events</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -169,6 +170,7 @@
                     <th>Name</th>
                     <th>Time</th>
                     <th>Location</th>
+                    <th>Available Seats</th>
                 </tr>
                 @foreach (var e in Model)
                 {
@@ -177,6 +179,7 @@
                         <td>@e.Name</td>
                         <td>@e.Time</td>
                         <td>@e.Location</td>
+                        <td>@e.AvailableSeats</td>
                         <td><a href="ShowEventDetails?eventId=@e.Id">View Details</a></td>
                     </tr>
                 }
@@ -187,10 +190,6 @@
         {
             <p class="noEvents">No Events listed.</p><br /><br />
         }
-    </div>
-
-    <div class="showRegistrationsFooter">
-        <a href="ShowUpcomingEvents">Show Upcoming Events</a>
     </div>
 
 </body>

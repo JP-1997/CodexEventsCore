@@ -19,6 +19,19 @@ namespace CodexEvents.Services.EventRegistrationService
             _IEventRegistrationRepository = IEventRegistrationRepository;
         }
 
+        public List<Event> fetchEventsByUserId(int userId)
+        {
+            var eventRegistrationsRecords =_IEventRegistrationRepository.fetchEventRegistrationsByUserId(userId);
+            eventRegistrationsRecords.Wait();
+            List<EventRegistration> ers = eventRegistrationsRecords.Result;
+            List<Event> events = new List<Event>();
+            foreach (EventRegistration er in ers)
+            {
+                Event e = _IEventRepository.GetEvent(er.EventId);
+                events.Add(e);
+            }
+            return events;
+        }
 
         public int RaiseRequest(int userId, int eventId)
         {

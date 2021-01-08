@@ -29,8 +29,9 @@ namespace CodexEvents.Controllers
         }
         public IActionResult Dashboard()
         {
-            List<Event> upcomingEvents = _IEventService.fetchUpcomingEvents();
-            return View(upcomingEvents);
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            List<Event> events = _IEventRegistrationService.fetchEventsByUserId(userId);
+            return View(events);
         }
 
         public IActionResult ShowProfile()
@@ -116,6 +117,12 @@ namespace CodexEvents.Controllers
         public IActionResult RequestRaiseUnsuccessful()
         {
             return View();
+        }
+
+        public IActionResult ShowUpcomingEvents()
+        {
+            List<Event> upcomingEvents = _IEventService.fetchUpcomingEvents();
+            return View(upcomingEvents);
         }
 
     }

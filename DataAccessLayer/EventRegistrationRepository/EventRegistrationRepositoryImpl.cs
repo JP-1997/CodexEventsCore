@@ -1,5 +1,6 @@
 ﻿using CodexEvents.Models;
 using CodexEvents.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,12 @@ namespace CodexEvents.DataAccessLayer.EventRegistrationRepository
         {
             _context.EventRegistrations.Add(er);
             return _context.SaveChanges();
+        }
+
+        public async Task<List<EventRegistration>> fetchEventRegistrationsByUserId(int userId)
+        {
+            var records = await _context.EventRegistrations.Where(er => er.UserId == userId).Select(er => er).ToListAsync();
+            return records;
         }
     }
 }

@@ -9,5 +9,7 @@ namespace CodexEvents.DataAccessLayer.EventRegistrationRepository
     public interface IEventRegistrationRepository
     {
         int AddRegistration(EventRegistration er);
+
+        Task<List<EventRegistration>> fetchEventRegistrationsByUserId(int userId);
     }
 }
