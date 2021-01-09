@@ -97,7 +97,6 @@ namespace CodexEvents.Services.EventRegistrationService
             if(result > 0)
             {
                 Event e =_IEventRepository.GetEvent(eventId);
-                e.AvailableSeats = e.AvailableSeats - 1;
                 e.PendingRequests = e.PendingRequests + 1;
                 _IEventRepository.updateEvent(e);
                 return 1;

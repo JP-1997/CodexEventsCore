@@ -183,7 +183,10 @@
                         <td>@ur.UserId</td>
                         <td>@ur.UserName</td>
                         <td>@ur.Status</td>
-                        <td><a href="ShowRequest?requestId=@ur.RegistrationId">Manage Request</a></td>
+                        @if (ur.Status == "PENDING APPROVAL")
+                        {
+                            <td><a href="ShowRequest?requestId=@ur.RegistrationId">Manage Request</a></td>
+                        }
                     </tr>
                 }
 
