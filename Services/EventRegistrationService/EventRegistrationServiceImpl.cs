@@ -62,14 +62,17 @@ namespace CodexEvents.Services.EventRegistrationService
             {
                 Event e = _IEventRepository.GetEvent(er.EventId);
                 //events.Add(e);
-                RegistrationInfo ri = new RegistrationInfo();
-                ri.Id = er.Id;
-                ri.EventId = e.Id;
-                ri.EventName = e.Name;
-                ri.EventTime = e.Time;
-                ri.EventLocation = e.Location;
-                ri.RequestStatus = er.Status;
-                ris.Add(ri);
+                if(e != null)
+                {
+                    RegistrationInfo ri = new RegistrationInfo();
+                    ri.Id = er.Id;
+                    ri.EventId = e.Id;
+                    ri.EventName = e.Name;
+                    ri.EventTime = e.Time;
+                    ri.EventLocation = e.Location;
+                    ri.RequestStatus = er.Status;
+                    ris.Add(ri);
+                }
             }
             return ris;
         }
