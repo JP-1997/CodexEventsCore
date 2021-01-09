@@ -19,18 +19,27 @@ namespace CodexEvents.Services.EventRegistrationService
             _IEventRegistrationRepository = IEventRegistrationRepository;
         }
 
-        public List<Event> fetchEventsByUserId(int userId)
+        public List<RegistrationInfo> fetchRegistrationInfosByUserId(int userId)
         {
             var eventRegistrationsRecords =_IEventRegistrationRepository.fetchEventRegistrationsByUserId(userId);
             eventRegistrationsRecords.Wait();
             List<EventRegistration> ers = eventRegistrationsRecords.Result;
             List<Event> events = new List<Event>();
+            List<RegistrationInfo> ris = new List<RegistrationInfo>();
             foreach (EventRegistration er in ers)
             {
                 Event e = _IEventRepository.GetEvent(er.EventId);
-                events.Add(e);
+                //events.Add(e);
+                RegistrationInfo ri = new RegistrationInfo();
+                ri.Id = er.Id;
+                ri.EventId = e.Id;
+                ri.EventName = e.Name;
+                ri.EventTime = e.Time;
+                ri.EventLocation = e.Location;
+                ri.RequestStatus = er.Status;
+                ris.Add(ri);
             }
-            return events;
+            return ris;
         }
 
         public int isUserRegisteredInEvent(int userId, int eventId)

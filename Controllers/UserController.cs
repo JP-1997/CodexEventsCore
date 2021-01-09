@@ -30,8 +30,8 @@ namespace CodexEvents.Controllers
         public IActionResult Dashboard()
         {
             int userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
-            List<Event> events = _IEventRegistrationService.fetchEventsByUserId(userId);
-            return View(events);
+            List<RegistrationInfo> ris = _IEventRegistrationService.fetchRegistrationInfosByUserId(userId);
+            return View(ris);
         }
 
         public IActionResult ShowProfile()

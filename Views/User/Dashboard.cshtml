@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CodexEvents.Models.Event>
+﻿@model IEnumerable<CodexEvents.Models.RegistrationInfo>
 @{
     Layout = null;
 }
@@ -161,23 +161,27 @@
 
     <div class="myEventsTable">
 
-        @if (Model.Count<Event>() != 0)
+        @if (Model.Count<RegistrationInfo>() != 0)
         {
             <table class="table table-hover">
                 <tr>
-                    <th>ID</th>
+                    <th>Request ID</th>
+                    <th>Event ID</th>
                     <th>Name</th>
                     <th>Time</th>
                     <th>Location</th>
+                    <th>Status</th>
                 </tr>
-                @foreach (var e in Model)
+                @foreach (var r in Model)
                 {
                     <tr>
-                        <td>@e.Id</td>
-                        <td>@e.Name</td>
-                        <td>@e.Time</td>
-                        <td>@e.Location</td>
-                        <td><a href="ShowEventDetails?eventId=@e.Id">View Details</a></td>
+                        <td>@r.Id</td>
+                        <td>@r.EventId</td>
+                        <td>@r.EventName</td>
+                        <td>@r.EventTime</td>
+                        <td>@r.EventLocation</td>
+                        <td>@r.RequestStatus</td>
+                        <td><a href="ShowEventDetails?eventId=@r.EventId">View Details</a></td>
                     </tr>
                 }
 

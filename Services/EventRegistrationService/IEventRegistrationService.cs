@@ -1,4 +1,5 @@
-﻿using CodexEvents.Models;
+﻿
+using CodexEvents.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CodexEvents.Services.EventRegistrationService
     public interface IEventRegistrationService
     {
         int RaiseRequest(int userId, int eventId);
-        List<Event> fetchEventsByUserId(int userId);
+        List<RegistrationInfo> fetchRegistrationInfosByUserId(int userId);
 
         int isUserRegisteredInEvent(int userId, int eventId);
     }
