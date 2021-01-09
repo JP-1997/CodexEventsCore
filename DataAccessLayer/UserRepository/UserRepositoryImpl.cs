@@ -24,7 +24,10 @@ namespace CodexEvents.DataAccessLayer.UserRepository
         public User getUserInfo(int userId)
         {
             var result = (from u in _context.Users where u.Id == userId select u).SingleOrDefault();
-            result.Password = "DUMMY";
+            if(result != null)
+            {
+                result.Password = "DUMMY";
+            }
             return result;
         }
     }

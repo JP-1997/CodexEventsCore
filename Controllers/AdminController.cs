@@ -162,12 +162,15 @@ namespace CodexEvents.Controllers
             foreach(EventRegistration er in ers)
             {
                 User user = _IUserRepository.getUserInfo(er.UserId);
-                UserRequest ur = new UserRequest();
-                ur.RegistrationId = er.Id;
-                ur.UserId = er.UserId;
-                ur.UserName = user.FirstName + " " + user.LastName;
-                ur.Status = er.Status;
-                urs.Add(ur);
+                if(user != null)
+                {
+                    UserRequest ur = new UserRequest();
+                    ur.RegistrationId = er.Id;
+                    ur.UserId = er.UserId;
+                    ur.UserName = user.FirstName + " " + user.LastName;
+                    ur.Status = er.Status;
+                    urs.Add(ur);
+                }
             }
             ViewBag.UserRequests = urs;
             ViewBag.EventId = eventId;
