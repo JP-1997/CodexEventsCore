@@ -208,7 +208,34 @@ namespace CodexEvents.Controllers
             EventRegistration eventRegistration = _IEventRegistrationService.fetchEventRegistrationById(eventRegistrationId);
             int eventId = eventRegistration.EventId;
             int result = _IEventRegistrationService.ApproveRequest(eventRegistrationId);
-            return RedirectToAction("ManageRequests", new { eventId = eventId });
+            //return RedirectToAction("ManageRequests", new { eventId = eventId });
+            return RedirectToAction("AddPreRequisites", new { eventRegistrationId = eventRegistrationId });
+        }
+
+        public IActionResult AddPreRequisites()
+        {
+            int eventRegistrationId = Convert.ToInt32(HttpContext.Request.Query["requestId"].ToString());
+            EventRegistration eventRegistration = _IEventRegistrationService.fetchEventRegistrationById(eventRegistrationId);
+            int eventId = eventRegistration.EventId;
+            Event e = _IEventService.FetchEventById(eventId);
+            ViewBag.EventId = eventId;
+            ViewBag.EventName = e.Name;
+            User user = _IUserRepository.getUserInfo(eventRegistration.UserId);
+            ViewBag.UserId = user.Id;
+            ViewBag.UserName = user.FirstName + " " + user.LastName;
+            ViewBag.EventRegistrationId = eventRegistrationId;
+            ViewBag.Prerequisite = eventRegistration.PreRequisite;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePreRequisites(PrerequisiteViewModel p)
+        {
+            int eventRegistrationId = p.RequestId;
+            EventRegistration eventRegistration = _IEventRegistrationService.fetchEventRegistrationById(eventRegistrationId);
+            eventRegistration.PreRequisite = p.Prerequisite;
+            _IEventRegistrationService.UpdateEventRegistration(eventRegistration);
+            return RedirectToAction("ManageRequests", new { eventId = eventRegistration.EventId });
         }
 
         public IActionResult RejectRequest()

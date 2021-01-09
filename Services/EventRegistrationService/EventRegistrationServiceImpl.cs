@@ -43,6 +43,12 @@ namespace CodexEvents.Services.EventRegistrationService
             return er;
         }
 
+        public string fetchPrerequisites(int eventRegistrationId)
+        {
+            EventRegistration eventRegistration = _IEventRegistrationRepository.findEventRegistrationById(eventRegistrationId);
+            return eventRegistration.PreRequisite;
+        }
+
         public List<EventRegistration> fetchRegistrationInfosByEventId(int eventId)
         {
             var eventRegistrationRecords = _IEventRegistrationRepository.fetchEventRegistrationsByEventId(eventId);
@@ -82,7 +88,7 @@ namespace CodexEvents.Services.EventRegistrationService
             EventRegistration er = _IEventRegistrationRepository.findEventRegistrationByUserIdAndEventId(userId, eventId);
             if(er != null)
             {
-                return 1;
+                return er.Id;
             }
             else
             {

@@ -24,5 +24,7 @@ namespace CodexEvents.Services.EventRegistrationService
 
         int RejectRequest(int eventRegistrationId);
 
+        string fetchPrerequisites(int eventRegistrationId);
+
     }
 }

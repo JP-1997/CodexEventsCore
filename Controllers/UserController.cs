@@ -93,6 +93,15 @@ namespace CodexEvents.Controllers
             var eventInfo = _IEventService.FetchEventById(eventId);
             ViewBag.Event = eventInfo;
             int result = _IEventRegistrationService.isUserRegisteredInEvent(userId, eventId);
+            if(result > 0)
+            {
+                string prerequisite = _IEventRegistrationService.fetchPrerequisites(result);
+                ViewBag.prerequisite = prerequisite;
+            }
+            else
+            {
+                ViewBag.prerequisite = null;
+            }
             ViewBag.UserAlreadyRegistered = result;
             return View();
         }

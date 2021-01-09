@@ -178,16 +178,20 @@
                 </tr>
                 @foreach (var ur in urs)
                 {
-                    <tr>
-                        <td>@ur.RegistrationId</td>
-                        <td>@ur.UserId</td>
-                        <td>@ur.UserName</td>
-                        <td>@ur.Status</td>
-                        @if (ur.Status == "PENDING APPROVAL")
-                        {
-                            <td><a href="ShowRequest?requestId=@ur.RegistrationId">Manage Request</a></td>
-                        }
-                    </tr>
+            <tr>
+                <td>@ur.RegistrationId</td>
+                <td>@ur.UserId</td>
+                <td>@ur.UserName</td>
+                <td>@ur.Status</td>
+                @if (ur.Status == "PENDING APPROVAL")
+                {
+                    <td><a href="ShowRequest?requestId=@ur.RegistrationId">Manage Request</a></td>
+                }
+                @if (ur.Status == "APPROVED")
+                {
+                    <td><a href="AddPreRequisites?requestId=@ur.RegistrationId">Edit Pre-requisites</a></td>
+                }
+            </tr>
                 }
 
             </table>

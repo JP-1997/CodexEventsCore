@@ -1,11 +1,15 @@
-﻿@model CodexEvents.Models.Event
+﻿@model CodexEvents.Models.EventRegistration
 @{
     Layout = null;
 }
+
 @{
-    Event e = ViewBag.Event;
-    int isUserRegistered = ViewBag.UserAlreadyRegistered;
-    string prerequisite = ViewBag.prerequisite;
+    int eventId = ViewBag.EventId;
+    string eventName = ViewBag.EventName;
+    int userId = ViewBag.UserId;
+    string userName = ViewBag.UserName;
+    int eventRegistrationId = ViewBag.EventRegistrationId;
+    string prerequisite = ViewBag.Prerequisite;
 }
 <!DOCTYPE html>
 <html>
@@ -51,36 +55,6 @@
             font-family: Montserrat, sans-serif;
         }
 
-        .showRegistrationsFooter {
-            background-color: #f4511e;
-            letter-spacing: 4px;
-            border-radius: 0;
-            width: 100%;
-            box-sizing: border-box;
-            padding: 14px 16px;
-            width: 100%;
-            align-self: stretch;
-        }
-
-            .showRegistrationsFooter a {
-                color: #fff !important;
-                float: center;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-                border: 1px solid #f4511e;
-                display: inline-block;
-                width: 100%;
-                height: 100%;
-                align-self: stretch;
-            }
-
-                .showRegistrationsFooter a:hover {
-                    color: #f4511e !important;
-                    background-color: #fff !important;
-                }
-
         .profile-buttons {
             display: flex;
             height: 30px;
@@ -96,7 +70,7 @@
                 padding: 20px;
             }
     </style>
-    <title>Event Details</title>
+    <title>Add Prerequisite</title>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -105,58 +79,55 @@
             <a class="navbar-brand" href="ShowDashboard">CodeX Events</a>
         </div>
     </nav>
-    <h2 class="profileheading">Event Details</h2><br />
+    <h2 class="profileheading">Add Prerequisite</h2><br />
 
     <div class="user-details-table">
         <table class="table">
             <tr>
-                <td class="userdetail">Event Id</td>
-                <td>@e.Id</td>
+                <td class="userdetail">Event ID</td>
+                <td>@eventId</td>
             </tr>
             <tr>
-                <td class="userdetail">Name</td>
-                <td>@e.Name</td>
+                <td class="userdetail">Event Name</td>
+                <td>@eventName</td>
             </tr>
             <tr>
-                <td class="userdetail">Description</td>
-                <td>@e.Description</td>
+                <td class="userdetail">User ID</td>
+                <td>@userId</td>
             </tr>
             <tr>
-                <td class="userdetail">Time</td>
-                <td>@e.Time</td>
+                <td class="userdetail">User Name</td>
+                <td>@userName</td>
             </tr>
             <tr>
-                <td class="userdetail">Location</td>
-                <td>@e.Location</td>
+                <td class="userdetail">Pre-Requisites</td>
+                <td>
+                    <form asp-controller="Admin" asp-action="UpdatePreRequisites" method="post">
+                        <div class="form-group">
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <input class="form-control" name="requestId" value="@eventRegistrationId" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="prerequisite" id="prerequisite" rows="3">@prerequisite</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+                                <br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSAVE&nbsp&nbsp<span class="glyphicon glyphicon-check"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
             </tr>
-            <tr>
-                <td class="userdetail">Total Seats</td>
-                <td>@e.TotalSeats</td>
-            </tr>
-            <tr>
-                <td class="userdetail">Available Seats</td>
-                <td>@e.AvailableSeats</td>
-            </tr>
-            @if(prerequisite != null)
-            {
-                <tr>
-                    <td class="userdetail">Pre-requisites</td>
-                    <td>@prerequisite</td>
-                </tr>
-            }
+
+
+            
         </table>
     </div>
-    @if (isUserRegistered < 0)
-    {
-    @if (e.AvailableSeats != 0)
-    {
-    <div class="showRegistrationsFooter">
-        <a href="RaiseRequest?eventId=@e.Id">Raise Request</a>
-    </div>
-    }
-
-    }
-
 
 </body>
 </html>
