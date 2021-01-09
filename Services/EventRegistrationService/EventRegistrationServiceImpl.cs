@@ -19,6 +19,38 @@ namespace CodexEvents.Services.EventRegistrationService
             _IEventRegistrationRepository = IEventRegistrationRepository;
         }
 
+        public int ApproveRequest(int eventRegistrationId)
+        {
+            EventRegistration eventRegistration = _IEventRegistrationRepository.findEventRegistrationById(eventRegistrationId);
+            Event e = _IEventRepository.GetEvent(eventRegistration.EventId);
+            if(e.AvailableSeats > 0)
+            {
+                eventRegistration.Status = "APPROVED";
+                e.AvailableSeats = e.AvailableSeats - 1;
+                e.PendingRequests = e.PendingRequests - 1;
+                _IEventRepository.updateEvent(e);
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public EventRegistration fetchEventRegistrationById(int eventRegistrationId)
+        {
+            EventRegistration er = _IEventRegistrationRepository.findEventRegistrationById(eventRegistrationId);
+            return er;
+        }
+
+        public List<EventRegistration> fetchRegistrationInfosByEventId(int eventId)
+        {
+            var eventRegistrationRecords = _IEventRegistrationRepository.fetchEventRegistrationsByEventId(eventId);
+            eventRegistrationRecords.Wait();
+            List<EventRegistration> ers = eventRegistrationRecords.Result;
+            return ers;
+        }
+
         public List<RegistrationInfo> fetchRegistrationInfosByUserId(int userId)
         {
             var eventRegistrationsRecords =_IEventRegistrationRepository.fetchEventRegistrationsByUserId(userId);
@@ -66,6 +98,7 @@ namespace CodexEvents.Services.EventRegistrationService
             {
                 Event e =_IEventRepository.GetEvent(eventId);
                 e.AvailableSeats = e.AvailableSeats - 1;
+                e.PendingRequests = e.PendingRequests + 1;
                 _IEventRepository.updateEvent(e);
                 return 1;
             }
@@ -73,6 +106,21 @@ namespace CodexEvents.Services.EventRegistrationService
             {
                 return -1;
             }
+        }
+
+        public int RejectRequest(int eventRegistrationId)
+        {
+            EventRegistration eventRegistration = _IEventRegistrationRepository.findEventRegistrationById(eventRegistrationId);
+            Event e = _IEventRepository.GetEvent(eventRegistration.EventId);
+            eventRegistration.Status = "REJECTED";
+            e.PendingRequests = e.PendingRequests - 1;
+            _IEventRepository.updateEvent(e);
+            return 1;
+        }
+
+        public int UpdateEventRegistration(EventRegistration er)
+        {
+            return _IEventRegistrationRepository.UpdateEventRegistration(er);
         }
     }
 }

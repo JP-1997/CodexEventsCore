@@ -1,9 +1,12 @@
-﻿@model CodexEvents.Models.Event
-@{
+﻿@{
     Layout = null;
 }
+
 @{
-    Event e = ViewBag.Event;
+    UserRequest userRequest = ViewBag.UserRequest;
+    int eventId = ViewBag.EventId;
+    string eventName = ViewBag.EventName;
+    int registrationsOver = ViewBag.RegistrationsOver;
 }
 <!DOCTYPE html>
 <html>
@@ -64,7 +67,7 @@
                 padding: 20px;
             }
     </style>
-    <title>Event Details</title>
+    <title>Manage Request</title>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -73,50 +76,39 @@
             <a class="navbar-brand" href="ShowDashboard">CodeX Events</a>
         </div>
     </nav>
-    <h2 class="profileheading">Event Details</h2><br />
+    <h2 class="profileheading">Event ID: @eventId</h2>
+    <h2 class="profileheading">Event Name: @eventName</h2><br />
+
 
     <div class="user-details-table">
         <table class="table">
             <tr>
-                <td class="userdetail">Event Id</td>
-                <td>@e.Id</td>
+                <td class="userdetail">Request ID</td>
+                <td>@userRequest.RegistrationId</td>
+            </tr>
+            <tr>
+                <td class="userdetail">User ID</td>
+                <td>@userRequest.UserId</td>
             </tr>
             <tr>
                 <td class="userdetail">Name</td>
-                <td>@e.Name</td>
+                <td>@userRequest.UserName</td>
             </tr>
             <tr>
-                <td class="userdetail">Description</td>
-                <td>@e.Description</td>
-            </tr>
-            <tr>
-                <td class="userdetail">Time</td>
-                <td>@e.Time</td>
-            </tr>
-            <tr>
-                <td class="userdetail">Location</td>
-                <td>@e.Location</td>
-            </tr>
-            <tr>
-                <td class="userdetail">Total Seats</td>
-                <td>@e.TotalSeats</td>
-            </tr>
-            <tr>
-                <td class="userdetail">Available Seats</td>
-                <td>@e.AvailableSeats</td>
-            </tr>
-            <tr>
-                <td class="userdetail">Pending Requests</td>
-                <td>@e.PendingRequests</td>
+                <td class="userdetail">Request Status</td>
+                <td>@userRequest.Status</td>
             </tr>
         </table>
     </div>
 
-    <div class="profile-buttons">
-        <a href="ShowEditEvent?eventId=@e.Id"><button type="button" class="btn btn-primary">Edit</button></a>
-        <a href="ManageRequests?eventId=@e.Id"><button type="button" class="btn btn-success">Manage Requests</button></a>
-        <a href="ShowDeleteEvent?eventId=@e.Id"><button type="button" class="btn btn-danger">Delete Event</button></a>
-    </div>
+    @if(registrationsOver == 0)
+    {
+        <div class="profile-buttons">
+            <a href="ApproveRequest?requestId=@userRequest.RegistrationId"><button type="button" class="btn btn-success">APPROVE</button></a>
+            <a href="RejectRequest?requestId=@userRequest.RegistrationId"><button type="button" class="btn btn-danger">REJECT</button></a>
+        </div>
+    }
+
 
 
 </body>

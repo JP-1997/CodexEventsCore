@@ -13,5 +13,12 @@ namespace CodexEvents.DataAccessLayer.EventRegistrationRepository
         Task<List<EventRegistration>> fetchEventRegistrationsByUserId(int userId);
 
         EventRegistration findEventRegistrationByUserIdAndEventId(int userId, int eventId);
+
+        Task<List<EventRegistration>> fetchEventRegistrationsByEventId(int eventId);
+
+        EventRegistration findEventRegistrationById(int eventRegistrationId);
+
+        int UpdateEventRegistration(EventRegistration er);
+
     }
 }

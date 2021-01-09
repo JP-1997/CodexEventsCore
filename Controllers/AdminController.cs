@@ -1,5 +1,6 @@
 ﻿using CodexEvents.DataAccessLayer.UserRepository;
 using CodexEvents.Models;
+using CodexEvents.Services.EventRegistrationService;
 using CodexEvents.Services.EventService;
 using CodexEvents.Services.ProfileService;
 using Microsoft.AspNetCore.Http;
@@ -16,12 +17,14 @@ namespace CodexEvents.Controllers
         IUserRepository _IUserRepository;
         IProfileService _IProfileService;
         IEventService _IEventService;
+        IEventRegistrationService _IEventRegistrationService;
 
-        public AdminController(IUserRepository IUserRepository, IProfileService IProfileService, IEventService IEventService)
+        public AdminController(IUserRepository IUserRepository, IProfileService IProfileService, IEventService IEventService, IEventRegistrationService IEventRegistrationService)
         {
             _IUserRepository = IUserRepository;
             _IProfileService = IProfileService;
             _IEventService = IEventService;
+            _IEventRegistrationService = IEventRegistrationService;
         }
 
         public IActionResult Dashboard()
@@ -148,6 +151,70 @@ namespace CodexEvents.Controllers
         {
             _IEventService.DeleteEvent(e.Id);
             return View();
+        }
+
+        public IActionResult ManageRequests()
+        {
+            int eventId = Convert.ToInt32(HttpContext.Request.Query["eventId"].ToString());
+            string eventName = _IEventService.FetchEventById(eventId).Name;
+            List<EventRegistration> ers = _IEventRegistrationService.fetchRegistrationInfosByEventId(eventId);
+            List<UserRequest> urs = new List<UserRequest>();
+            foreach(EventRegistration er in ers)
+            {
+                User user = _IUserRepository.getUserInfo(er.UserId);
+                UserRequest ur = new UserRequest();
+                ur.RegistrationId = er.Id;
+                ur.UserId = er.UserId;
+                ur.UserName = user.FirstName + " " + user.LastName;
+                ur.Status = er.Status;
+                urs.Add(ur);
+            }
+            ViewBag.UserRequests = urs;
+            ViewBag.EventId = eventId;
+            ViewBag.EventName = eventName;
+            return View();
+        }
+
+        public IActionResult ShowRequest()
+        {
+            int eventRegistrationId = Convert.ToInt32(HttpContext.Request.Query["requestId"].ToString());
+            EventRegistration eventRegistration = _IEventRegistrationService.fetchEventRegistrationById(eventRegistrationId);
+            Event e = _IEventService.FetchEventById(eventRegistration.EventId);
+            if(e.AvailableSeats == 0)
+            {
+                eventRegistration.Status = "REGISTRATIONS ARE OVER";
+                _IEventRegistrationService.UpdateEventRegistration(eventRegistration);
+                ViewBag.RegistrationsOver = 1;
+            }
+            User user = _IUserRepository.getUserInfo(eventRegistration.UserId);
+            UserRequest ur = new UserRequest();
+            ur.RegistrationId = eventRegistrationId;
+            ur.UserId = user.Id;
+            ur.UserName = user.FirstName + " " + user.LastName;
+            ur.Status = eventRegistration.Status;
+            ViewBag.UserRequest = ur;
+            ViewBag.EventId = e.Id;
+            ViewBag.EventName = e.Name;
+            ViewBag.RegistrationsOver = 0;
+            return View();
+        }
+
+        public IActionResult ApproveRequest()
+        {
+            int eventRegistrationId = Convert.ToInt32(HttpContext.Request.Query["requestId"].ToString());
+            EventRegistration eventRegistration = _IEventRegistrationService.fetchEventRegistrationById(eventRegistrationId);
+            int eventId = eventRegistration.EventId;
+            int result = _IEventRegistrationService.ApproveRequest(eventRegistrationId);
+            return RedirectToAction("ManageRequests", new { eventId = eventId });
+        }
+
+        public IActionResult RejectRequest()
+        {
+            int eventRegistrationId = Convert.ToInt32(HttpContext.Request.Query["requestId"].ToString());
+            EventRegistration eventRegistration = _IEventRegistrationService.fetchEventRegistrationById(eventRegistrationId);
+            int eventId = eventRegistration.EventId;
+            int result = _IEventRegistrationService.RejectRequest(eventRegistrationId);
+            return RedirectToAction("ManageRequests", new { eventId = eventId });
         }
     }
 }
