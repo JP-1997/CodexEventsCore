@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BC = BCrypt.Net.BCrypt;
 
 namespace CodexEvents.Controllers
 {
@@ -84,6 +85,9 @@ namespace CodexEvents.Controllers
         public IActionResult Register(User user)
         {
             user.Role = "USER";
+            var passwordInRaw = user.Password;
+            var hashedPassword = BC.HashPassword(passwordInRaw);
+            user.Password = hashedPassword;
             if(_IUserRepository.AddUser(user) > 0)
             {
                 return View("RegisteredSuccessfully");

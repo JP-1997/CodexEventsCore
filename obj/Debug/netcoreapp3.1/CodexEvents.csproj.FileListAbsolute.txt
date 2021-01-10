@@ -104,3 +104,4 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\User\ShowUpcomi
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ManageRequests.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowRequest.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddPreRequisites.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll

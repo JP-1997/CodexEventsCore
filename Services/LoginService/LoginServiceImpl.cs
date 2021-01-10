@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BC = BCrypt.Net.BCrypt;
 
 namespace CodexEvents.Services.LoginService
 {
@@ -20,10 +21,17 @@ namespace CodexEvents.Services.LoginService
         {
             try
             {
-                var validate = (from u in _context.Users
-                                where u.Email == email && u.Password == password
+                var account = (from u in _context.Users
+                                where u.Email == email
                                 select u).SingleOrDefault();
-                return validate;
+                if(account == null || !BC.Verify(password, account.Password))
+                {
+                    return null;
+                }
+                else
+                {
+                    return account;
+                }
             }
             catch(Exception)
             {
