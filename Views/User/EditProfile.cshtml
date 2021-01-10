@@ -4,6 +4,8 @@
 }
 @{
     User user = ViewBag.User;
+    DateTime dob = user.DateOfBirth;
+    string dobStr = dob.ToString("yyyy'-'MM'-'dd");
 }
 <!DOCTYPE html>
 <html>
@@ -214,7 +216,8 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        <input type="date" name="dateOfBirth" value="@user.DateOfBirth" class="form-control"/>
+                        <input type="date" name="dateOfBirth" value="@dobStr" class="form-control"/>
+                        
                     </div>
                 </div>
             </div>
