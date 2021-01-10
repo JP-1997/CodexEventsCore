@@ -209,7 +209,7 @@ namespace CodexEvents.Controllers
             int eventId = eventRegistration.EventId;
             int result = _IEventRegistrationService.ApproveRequest(eventRegistrationId);
             //return RedirectToAction("ManageRequests", new { eventId = eventId });
-            return RedirectToAction("AddPreRequisites", new { eventRegistrationId = eventRegistrationId });
+            return RedirectToAction("AddPreRequisites", new { requestId = eventRegistrationId });
         }
 
         public IActionResult AddPreRequisites()
