@@ -4,6 +4,8 @@
 }
 @{
     Event e = ViewBag.Event;
+    DateTime eventTime = e.Time;
+    string eventTimeStr = eventTime.ToString("yyyy'-'MM'-'dd'T'HH':'mm");
 }
 <!DOCTYPE html>
 <html>
@@ -169,7 +171,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        <input type="datetime-local" name="time" value="@e.Time" class="form-control" />
+                        <input type="datetime-local" name="time" value="@eventTimeStr" class="form-control" />
                     </div>
                 </div>
             </div>
