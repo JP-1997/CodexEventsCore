@@ -4,6 +4,7 @@
 }
 @{ 
     User user = ViewBag.User;
+    string dob = user.DateOfBirth.ToShortDateString();
 }
 <!DOCTYPE html>
 <html>
@@ -91,7 +92,7 @@
             </tr>
             <tr>
                 <td class="userdetail">Date of birth</td>
-                <td><fmt:formatDate type="date" value="@user.DateOfBirth" /></td>
+                <td>@dob</td>
             </tr>
             <tr>
                 <td class="userdetail">Gender</td>
@@ -114,7 +115,8 @@
 
     <div class="profile-buttons">
         <a href="ShowEditProfile"><button type="button" class="btn btn-primary">Edit</button></a>
-        <a href="ShowDeleteProfile"><button type="button" class="btn btn-warning">Delete Profile</button></a>
+        <a href="ShowChangePassword"><button type="button" class="btn btn-warning">Change Password</button></a>
+        <a href="ShowDeleteProfile"><button type="button" class="btn btn-danger">Delete Profile</button></a>
     </div>
 
 
