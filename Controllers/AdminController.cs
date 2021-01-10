@@ -246,5 +246,10 @@ namespace CodexEvents.Controllers
             int result = _IEventRegistrationService.RejectRequest(eventRegistrationId);
             return RedirectToAction("ManageRequests", new { eventId = eventId });
         }
+
+        public IActionResult ShowChangePassword()
+        {
+            return RedirectToAction("ChangePassword", "LoginAndReg");
+        }
     }
 }

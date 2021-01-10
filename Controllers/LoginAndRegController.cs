@@ -1,6 +1,7 @@
 ﻿using CodexEvents.DataAccessLayer.UserRepository;
 using CodexEvents.Models;
 using CodexEvents.Services.LoginService;
+using CodexEvents.Services.ProfileService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,11 +16,13 @@ namespace CodexEvents.Controllers
     {
         IUserRepository _IUserRepository;
         ILoginService _ILoginService;
+        IProfileService _IProfileService;
 
-        public LoginAndRegController(IUserRepository IUserRepository, ILoginService ILoginService)
+        public LoginAndRegController(IUserRepository IUserRepository, ILoginService ILoginService, IProfileService IProfileService)
         {
             _IUserRepository = IUserRepository;
             _ILoginService = ILoginService;
+            _IProfileService = IProfileService;
         }
         public IActionResult Login()
         {
@@ -137,6 +140,49 @@ namespace CodexEvents.Controllers
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        public IActionResult UpdatePassword(UpdatePasswordViewModel updatePasswordViewModel)
+        {
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            bool result = _IProfileService.UpdatePassword(userId, updatePasswordViewModel.OldPassword, updatePasswordViewModel.NewPassword);
+            if (result)
+            {
+                return RedirectToAction("PasswordChangedSuccessfully");
+            }
+            else
+            {
+                return RedirectToAction("PasswordChangeUnsuccessful");
+            }
+        }
+
+        public IActionResult PasswordChangedSuccessfully()
+        {
+            return View();
+        }
+
+        public IActionResult PasswordChangeUnsuccessful()
+        {
+            return View();
+        }
+
+        public IActionResult TakeBackToDashboard()
+        {
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            User user = _IUserRepository.getUserInfo(userId);
+            if(user.Role == "ADMIN")
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Dashboard", "User");
             }
         }
     }

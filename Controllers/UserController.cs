@@ -137,5 +137,9 @@ namespace CodexEvents.Controllers
             return View(upcomingEvents);
         }
 
+        public IActionResult ShowChangePassword()
+        {
+            return RedirectToAction("ChangePassword", "LoginAndReg");
+        }
     }
 }

@@ -105,3 +105,6 @@ D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ManageReq
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ShowRequest.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddPreRequisites.cshtml.g.cs
 D:\NET_Workspace\CodexEvents\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\ChangePassword.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\PasswordChangedSuccessfully.cshtml.g.cs
+D:\NET_Workspace\CodexEvents\obj\Debug\netcoreapp3.1\Razor\Views\LoginAndReg\PasswordChangeUnsuccessful.cshtml.g.cs

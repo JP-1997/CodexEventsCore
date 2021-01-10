@@ -10,5 +10,7 @@ namespace CodexEvents.Services.ProfileService
     {
         bool UpdateUser(User user);
         bool DeleteUser(int UserId);
+
+        bool UpdatePassword(int userId, string oldPassword, string newPassword);
     }
 }
