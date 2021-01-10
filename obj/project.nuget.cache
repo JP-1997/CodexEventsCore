@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+QLpMb7j1OjyalAw5Bz0SMZQTWyEaSRgOJ9UqHwQtdTtjB3J8oSSq63VgvGY1RMV5X7JvrjHXOIvDQDqdbCWiw==",
+  "dgSpecHash": "O9D/YZkgBEe25OAfufeFAq4OtCxFTLuWsEoimsBPe7rAe5IKQSFByhptWM+zsHwuQG5cuaIFTZQjzxtN1NWJig==",
   "success": true,
   "projectFilePath": "D:\\NET_Workspace\\CodexEvents\\CodexEvents.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\JP\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\JP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\JP\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\JP\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
